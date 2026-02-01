@@ -13,55 +13,40 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      
-      - name: Install terminal-pet
-        run: pip install git+https://github.com/apoorvgarg31/terminal-pet.git
-      
       - name: Get commit stats
         id: stats
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Count commits in last 7 days across all repos
+          # Count contributions this week
           COMMITS=$(gh api graphql -f query='
             query {
               user(login: "apoorvgarg31") {
                 contributionsCollection {
                   totalCommitContributions
-                  contributionCalendar {
-                    weeks(last: 1) {
-                      contributionDays {
-                        contributionCount
-                      }
-                    }
-                  }
                 }
               }
-            }' --jq '.data.user.contributionsCollection.contributionCalendar.weeks[0].contributionDays | map(.contributionCount) | add')
+            }' --jq '.data.user.contributionsCollection.totalCommitContributions')
           
-          echo "commits_this_week=$COMMITS" >> $GITHUB_OUTPUT
+          echo "total_commits=$COMMITS" >> $GITHUB_OUTPUT
           
-          # Calculate pet mood based on commits
-          if [ "$COMMITS" -ge 20 ]; then
+          # Calculate pet mood based on total commits (simplified)
+          if [ "$COMMITS" -ge 100 ]; then
             echo "mood=ECSTATIC 🤩" >> $GITHUB_OUTPUT
             echo "hunger=100" >> $GITHUB_OUTPUT
             echo "happiness=100" >> $GITHUB_OUTPUT
             echo "energy=90" >> $GITHUB_OUTPUT
-          elif [ "$COMMITS" -ge 10 ]; then
+          elif [ "$COMMITS" -ge 50 ]; then
             echo "mood=HAPPY 😊" >> $GITHUB_OUTPUT
             echo "hunger=90" >> $GITHUB_OUTPUT
             echo "happiness=95" >> $GITHUB_OUTPUT
             echo "energy=80" >> $GITHUB_OUTPUT
-          elif [ "$COMMITS" -ge 5 ]; then
+          elif [ "$COMMITS" -ge 20 ]; then
             echo "mood=CONTENT 😌" >> $GITHUB_OUTPUT
             echo "hunger=70" >> $GITHUB_OUTPUT
             echo "happiness=75" >> $GITHUB_OUTPUT
             echo "energy=70" >> $GITHUB_OUTPUT
-          elif [ "$COMMITS" -ge 1 ]; then
+          elif [ "$COMMITS" -ge 5 ]; then
             echo "mood=HUNGRY 😐" >> $GITHUB_OUTPUT
             echo "hunger=40" >> $GITHUB_OUTPUT
             echo "happiness=50" >> $GITHUB_OUTPUT
@@ -75,7 +60,7 @@ jobs:
 
       - name: Update README with badge
         run: |
-          cat > README.md << 'EOF'
+          cat > README.md << 'HEREDOC'
           <h1 align="center">Hey, I'm Apy 👋</h1>
 
           <p align="center">
@@ -104,13 +89,17 @@ jobs:
 
           ### 🐣 My Pet Status
 
-          <!-- terminal-pet badge - auto-updated -->
-          **🐣 Pip the Blob** | ${{ steps.stats.outputs.mood }}
-
-          | Hunger | Happiness | Energy | Commits This Week |
-          |:------:|:---------:|:------:|:-----------------:|
-          | ${{ steps.stats.outputs.hunger }}% | ${{ steps.stats.outputs.happiness }}% | ${{ steps.stats.outputs.energy }}% | ${{ steps.stats.outputs.commits_this_week }} |
-
+          HEREDOC
+          
+          echo "<!-- terminal-pet badge - auto-updated -->" >> README.md
+          echo "**🐣 Pip the Blob** | ${{ steps.stats.outputs.mood }}" >> README.md
+          echo "" >> README.md
+          echo "| Hunger | Happiness | Energy | Total Commits |" >> README.md
+          echo "|:------:|:---------:|:------:|:-------------:|" >> README.md
+          echo "| ${{ steps.stats.outputs.hunger }}% | ${{ steps.stats.outputs.happiness }}% | ${{ steps.stats.outputs.energy }}% | ${{ steps.stats.outputs.total_commits }} |" >> README.md
+          echo "" >> README.md
+          
+          cat >> README.md << 'HEREDOC'
           > *This pet lives in my terminal and feeds on my git commits! Badge auto-updates every 6 hours.*
 
           [![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Get_Yours-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
@@ -137,7 +126,7 @@ jobs:
             <strong>💼 Open to interesting AI projects</strong><br>
             <sub>⭐ Star <a href="https://github.com/apoorvgarg31/terminal-pet">terminal-pet</a> if it made you smile!</sub>
           </p>
-          EOF
+          HEREDOC
 
       - name: Commit and push if changed
         run: |
