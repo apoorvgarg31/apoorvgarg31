@@ -26,14 +26,14 @@ class Apy:
 
 ### 🐣 My Pet Status
 
-<!-- terminal-pet badge -->
-**🐣 Pip the Blob** | HAPPY 😊
+<!-- terminal-pet badge - auto-updated -->
+**🐣 Pip the Blob** | HUNGRY 😐
 
-| Hunger | Happiness | Energy |
-|:------:|:---------:|:------:|
-| 99% | 99% | 70% |
+| Hunger | Happiness | Energy | Total Commits |
+|:------:|:---------:|:------:|:-------------:|
+| 40% | 50% | 50% | 13 |
 
-> *This pet lives in my terminal and feeds on my git commits!*
+> *This pet lives in my terminal and feeds on my git commits! Badge auto-updates every 6 hours.*
 
 [![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Get_Yours-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
 
