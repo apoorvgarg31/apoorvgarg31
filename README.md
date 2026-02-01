@@ -30,7 +30,7 @@ class Apy:
 
 | Hunger | Happiness | Energy |
 |:------:|:---------:|:------:|
-| 99% | 99% | 70% |
+| 98% | 99% | 69% |
 
 > *This pet lives in my terminal and feeds on my git commits!*
 
