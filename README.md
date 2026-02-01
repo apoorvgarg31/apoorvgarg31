@@ -24,20 +24,18 @@ class Apy:
 
 ---
 
-### 🐣 Featured: terminal-pet
+### 🐣 My Pet Status
 
-> *A Tamagotchi that lives in your terminal and feeds on your git commits*
+<!-- terminal-pet badge -->
+**🐣 Pip the Blob** | HAPPY 😊
 
-```
-    ◠ ◡ ◠
-     \_/
-    /|■|\     hunger:    ████████░░  80%
-     / \      happiness: ██████████  100%
-    
-    HAPPY 😊
-```
+| Hunger | Happiness | Energy |
+|:------:|:---------:|:------:|
+| 99% | 99% | 70% |
 
-[![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Install_Now-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
+> *This pet lives in my terminal and feeds on my git commits!*
+
+[![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Get_Yours-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
 
 ```bash
 pip install git+https://github.com/apoorvgarg31/terminal-pet.git
