@@ -1,34 +1,63 @@
-# Hey, I'm Apy 👋
+<h1 align="center">Hey, I'm Apy 👋</h1>
 
-**AI Product Engineer** building at the intersection of AI and Construction Technology.
+<p align="center">
+  <strong>AI Product Engineer</strong> • Building AI × Construction Tech • London 🇬🇧
+</p>
 
-I love turning complex problems into elegant solutions — and sometimes building silly things for fun.
+<p align="center">
+  <em>I turn complex problems into elegant solutions — and sometimes build silly things for fun.</em>
+</p>
 
 ---
 
-### 🔨 What I Do
-- Build AI-powered products that solve real problems
-- Bridge the gap between cutting-edge AI and traditional industries
-- Make terminals a little more fun 🐣
+### 🛠️ What I'm About
 
-### 🚀 Featured Project
+```python
+class Apy:
+    role = "AI Product Engineer"
+    focus = ["AI/ML Products", "Construction Tech", "Developer Tools"]
+    currently_building = "Fun open source projects"
+    
+    def philosophy(self):
+        return "Ship fast, learn faster, make it fun 🚀"
+```
 
-<a href="https://github.com/apoorvgarg31/terminal-pet">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=apoorvgarg31&repo=terminal-pet&theme=dark" />
-</a>
+---
 
-**terminal-pet** — A Tamagotchi that lives in your terminal and feeds on your git commits. Because coding should be fun.
+### 🐣 Featured: terminal-pet
+
+> *A Tamagotchi that lives in your terminal and feeds on your git commits*
 
 ```
     ◠ ◡ ◠
      \_/
     /|■|\     hunger:    ████████░░  80%
      / \      happiness: ██████████  100%
+    
+    HAPPY 😊
+```
+
+[![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Install_Now-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
+
+```bash
+pip install git+https://github.com/apoorvgarg31/terminal-pet.git
 ```
 
 ---
 
-### 📫 Let's Connect
-- 💼 Open to interesting AI projects
-- 🐣 Star [terminal-pet](https://github.com/apoorvgarg31/terminal-pet) if it made you smile
+### 📊 Stats
 
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=apoorvgarg31&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="GitHub Stats" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=apoorvgarg31&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+</p>
+
+---
+
+<p align="center">
+  <strong>💼 Open to interesting AI projects</strong><br>
+  <sub>⭐ Star <a href="https://github.com/apoorvgarg31/terminal-pet">terminal-pet</a> if it made you smile!</sub>
+</p>
