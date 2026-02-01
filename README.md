@@ -26,14 +26,13 @@ class Apy:
 
 ### 🐣 My Pet Status
 
-<!-- terminal-pet badge - auto-updated -->
-**🐣 Pip the Blob** | HUNGRY 😐
+**🐣 Pip the Blob** | HAPPY 😊
 
-| Hunger | Happiness | Energy | Total Commits |
-|:------:|:---------:|:------:|:-------------:|
-| 40% | 50% | 50% | 13 |
+| Hunger | Happiness | Energy |
+|:------:|:---------:|:------:|
+| 99% | 99% | 70% |
 
-> *This pet lives in my terminal and feeds on my git commits! Badge auto-updates every 6 hours.*
+> *This pet lives in my terminal and feeds on my git commits!*
 
 [![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Get_Yours-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
 
@@ -59,19 +58,3 @@ pip install git+https://github.com/apoorvgarg31/terminal-pet.git
   <strong>💼 Open to interesting AI projects</strong><br>
   <sub>⭐ Star <a href="https://github.com/apoorvgarg31/terminal-pet">terminal-pet</a> if it made you smile!</sub>
 </p>
-
-<!-- PET-STATUS-START -->
-### 🐣 My Pet Status
-
-![Pet Badge](pet-badge.svg)
-
-| Stat | Value |
-|:----:|:-----:|
-| 🍕 Hunger | 25% |
-| 😊 Happiness | 30% |
-| ⚡ Energy | 35% |
-| 📊 Commits | 16 |
-| 🎭 Mood | STARVING 😢 |
-
-> *Updated automatically every 6 hours by [terminal-pet](https://github.com/apoorvgarg31/terminal-pet)*
-<!-- PET-STATUS-END -->
