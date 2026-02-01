@@ -1,0 +1,148 @@
+name: Update Pet Badge
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  push:
+    branches: [main]
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install terminal-pet
+        run: pip install git+https://github.com/apoorvgarg31/terminal-pet.git
+      
+      - name: Get commit stats
+        id: stats
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Count commits in last 7 days across all repos
+          COMMITS=$(gh api graphql -f query='
+            query {
+              user(login: "apoorvgarg31") {
+                contributionsCollection {
+                  totalCommitContributions
+                  contributionCalendar {
+                    weeks(last: 1) {
+                      contributionDays {
+                        contributionCount
+                      }
+                    }
+                  }
+                }
+              }
+            }' --jq '.data.user.contributionsCollection.contributionCalendar.weeks[0].contributionDays | map(.contributionCount) | add')
+          
+          echo "commits_this_week=$COMMITS" >> $GITHUB_OUTPUT
+          
+          # Calculate pet mood based on commits
+          if [ "$COMMITS" -ge 20 ]; then
+            echo "mood=ECSTATIC 🤩" >> $GITHUB_OUTPUT
+            echo "hunger=100" >> $GITHUB_OUTPUT
+            echo "happiness=100" >> $GITHUB_OUTPUT
+            echo "energy=90" >> $GITHUB_OUTPUT
+          elif [ "$COMMITS" -ge 10 ]; then
+            echo "mood=HAPPY 😊" >> $GITHUB_OUTPUT
+            echo "hunger=90" >> $GITHUB_OUTPUT
+            echo "happiness=95" >> $GITHUB_OUTPUT
+            echo "energy=80" >> $GITHUB_OUTPUT
+          elif [ "$COMMITS" -ge 5 ]; then
+            echo "mood=CONTENT 😌" >> $GITHUB_OUTPUT
+            echo "hunger=70" >> $GITHUB_OUTPUT
+            echo "happiness=75" >> $GITHUB_OUTPUT
+            echo "energy=70" >> $GITHUB_OUTPUT
+          elif [ "$COMMITS" -ge 1 ]; then
+            echo "mood=HUNGRY 😐" >> $GITHUB_OUTPUT
+            echo "hunger=40" >> $GITHUB_OUTPUT
+            echo "happiness=50" >> $GITHUB_OUTPUT
+            echo "energy=50" >> $GITHUB_OUTPUT
+          else
+            echo "mood=STARVING 😢" >> $GITHUB_OUTPUT
+            echo "hunger=10" >> $GITHUB_OUTPUT
+            echo "happiness=20" >> $GITHUB_OUTPUT
+            echo "energy=30" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update README with badge
+        run: |
+          cat > README.md << 'EOF'
+          <h1 align="center">Hey, I'm Apy 👋</h1>
+
+          <p align="center">
+            <strong>AI Product Engineer</strong> • Building AI × Construction Tech • London 🇬🇧
+          </p>
+
+          <p align="center">
+            <em>I turn complex problems into elegant solutions — and sometimes build silly things for fun.</em>
+          </p>
+
+          ---
+
+          ### 🛠️ What I'm About
+
+          ```python
+          class Apy:
+              role = "AI Product Engineer"
+              focus = ["AI/ML Products", "Construction Tech", "Developer Tools"]
+              currently_building = "Fun open source projects"
+              
+              def philosophy(self):
+                  return "Ship fast, learn faster, make it fun 🚀"
+          ```
+
+          ---
+
+          ### 🐣 My Pet Status
+
+          <!-- terminal-pet badge - auto-updated -->
+          **🐣 Pip the Blob** | ${{ steps.stats.outputs.mood }}
+
+          | Hunger | Happiness | Energy | Commits This Week |
+          |:------:|:---------:|:------:|:-----------------:|
+          | ${{ steps.stats.outputs.hunger }}% | ${{ steps.stats.outputs.happiness }}% | ${{ steps.stats.outputs.energy }}% | ${{ steps.stats.outputs.commits_this_week }} |
+
+          > *This pet lives in my terminal and feeds on my git commits! Badge auto-updates every 6 hours.*
+
+          [![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Get_Yours-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
+
+          ```bash
+          pip install git+https://github.com/apoorvgarg31/terminal-pet.git
+          ```
+
+          ---
+
+          ### 📊 Stats
+
+          <p align="center">
+            <img src="https://github-readme-stats.vercel.app/api?username=apoorvgarg31&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="GitHub Stats" />
+          </p>
+
+          <p align="center">
+            <img src="https://github-readme-streak-stats.herokuapp.com/?user=apoorvgarg31&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+          </p>
+
+          ---
+
+          <p align="center">
+            <strong>💼 Open to interesting AI projects</strong><br>
+            <sub>⭐ Star <a href="https://github.com/apoorvgarg31/terminal-pet">terminal-pet</a> if it made you smile!</sub>
+          </p>
+          EOF
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --staged --quiet || git commit -m "🐣 Auto-update pet badge"
+          git push
