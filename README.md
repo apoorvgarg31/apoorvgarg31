@@ -59,3 +59,19 @@ pip install git+https://github.com/apoorvgarg31/terminal-pet.git
   <strong>💼 Open to interesting AI projects</strong><br>
   <sub>⭐ Star <a href="https://github.com/apoorvgarg31/terminal-pet">terminal-pet</a> if it made you smile!</sub>
 </p>
+
+<!-- PET-STATUS-START -->
+### 🐣 My Pet Status
+
+![Pet Badge](pet-badge.svg)
+
+| Stat | Value |
+|:----:|:-----:|
+| 🍕 Hunger | 25% |
+| 😊 Happiness | 30% |
+| ⚡ Energy | 35% |
+| 📊 Commits | 15 |
+| 🎭 Mood | STARVING 😢 |
+
+> *Updated automatically every 6 hours by [terminal-pet](https://github.com/apoorvgarg31/terminal-pet)*
+<!-- PET-STATUS-END -->
