@@ -41,6 +41,6 @@
   <text x="185" y="105" font-family="monospace" font-size="10" fill="#fff">35%</text>
   
   <!-- Commits -->
-  <text x="220" y="55" font-family="monospace" font-size="20" fill="#4ade80">15</text>
+  <text x="220" y="55" font-family="monospace" font-size="20" fill="#4ade80">16</text>
   <text x="220" y="70" font-family="monospace" font-size="10" fill="#9ca3af">commits</text>
 </svg>
