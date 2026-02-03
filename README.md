@@ -83,7 +83,7 @@ pip install git+https://github.com/apoorvgarg31/terminal-pet.git
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com/?user=apoorvgarg31&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+  <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=apoorvgarg31&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" />
 </p>
 
 <p align="center">
