@@ -40,7 +40,6 @@ jobs:
             
             const result = await github.graphql(query);
             const total = result.user.contributionsCollection.contributionCalendar.totalContributions;
-            const commits = result.user.contributionsCollection.totalCommitContributions;
             
             // Get today's contributions
             const weeks = result.user.contributionsCollection.contributionCalendar.weeks;
@@ -64,12 +63,11 @@ jobs:
             
             // Calculate mood based on today's activity
             let mood = 'SLEEPY 😴';
-            let moodEmoji = '😴';
-            if (todayContribs >= 50) { mood = 'ECSTATIC 🤩'; moodEmoji = '🤩'; }
-            else if (todayContribs >= 20) { mood = 'HAPPY 😊'; moodEmoji = '😊'; }
-            else if (todayContribs >= 10) { mood = 'CONTENT 🙂'; moodEmoji = '🙂'; }
-            else if (todayContribs >= 5) { mood = 'OKAY 😐'; moodEmoji = '😐'; }
-            else if (todayContribs >= 1) { mood = 'HUNGRY 😕'; moodEmoji = '😕'; }
+            if (todayContribs >= 50) { mood = 'ECSTATIC 🤩'; }
+            else if (todayContribs >= 20) { mood = 'HAPPY 😊'; }
+            else if (todayContribs >= 10) { mood = 'CONTENT 🙂'; }
+            else if (todayContribs >= 5) { mood = 'OKAY 😐'; }
+            else if (todayContribs >= 1) { mood = 'HUNGRY 😕'; }
             
             // Calculate stats (based on recent activity)
             const hunger = Math.min(100, Math.max(0, todayContribs * 5));
@@ -77,21 +75,22 @@ jobs:
             const energy = Math.min(100, Math.max(0, 50 + todayContribs * 2));
             
             core.setOutput('total', total);
-            core.setOutput('commits', commits);
             core.setOutput('today', todayContribs);
             core.setOutput('pet_emoji', petEmoji);
             core.setOutput('pet_stage', petStage);
             core.setOutput('mood', mood);
-            core.setOutput('mood_emoji', moodEmoji);
             core.setOutput('hunger', hunger);
             core.setOutput('happiness', happiness);
             core.setOutput('energy', energy);
             
       - name: Update README
         run: |
-          # Update pet status section
-          cat > /tmp/pet_section.md << 'EOF'
+          # Create the new pet section
+          cat > /tmp/pet_section.md << 'PETEOF'
+          <!-- PET_STATUS_START -->
           ### 🐣 My Pet Status
+
+          <div align="center">
 
           **${{ steps.stats.outputs.pet_emoji }} Pip the Blob** | ${{ steps.stats.outputs.mood }}
 
@@ -99,23 +98,30 @@ jobs:
           |:------:|:---------:|:------:|:---------------:|
           | ${{ steps.stats.outputs.hunger }}% | ${{ steps.stats.outputs.happiness }}% | ${{ steps.stats.outputs.energy }}% | ${{ steps.stats.outputs.today }} |
 
-          > *Stage: **${{ steps.stats.outputs.pet_stage }}** (${{ steps.stats.outputs.total }} total contributions) • This pet feeds on my git commits!*
+          *Stage: **${{ steps.stats.outputs.pet_stage }}** (${{ steps.stats.outputs.total }} total contributions) • This pet feeds on my git commits!*
 
           [![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Get_Yours-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
 
           ```bash
           pip install git+https://github.com/apoorvgarg31/terminal-pet.git
           ```
-          EOF
+
+          </div>
+          <!-- PET_STATUS_END -->
+          PETEOF
           
-          # Use sed to replace the pet section
-          sed -i '/### 🐣 My Pet Status/,/```bash/{/```bash/!d}' README.md
-          sed -i '/### 🐣 My Pet Status/d' README.md
-          sed -i '/pip install git+https:\/\/github.com\/apoorvgarg31\/terminal-pet.git/d' README.md
-          sed -i '/```$/d' README.md
+          # Replace content between markers
+          awk '
+            /<!-- PET_STATUS_START -->/ { 
+              skip = 1
+              while ((getline line < "/tmp/pet_section.md") > 0) print line
+              next
+            }
+            /<!-- PET_STATUS_END -->/ { skip = 0; next }
+            !skip { print }
+          ' README.md > /tmp/README_new.md
           
-          # Find where to insert (before GitHub Stats)
-          sed -i '/### 📊 GitHub Stats/e cat /tmp/pet_section.md' README.md
+          mv /tmp/README_new.md README.md
           
       - name: Commit and push
         run: |
@@ -125,6 +131,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "🐣 Update pet status (${GITHUB_RUN_NUMBER})"
+            git commit -m "🐣 Update pet status"
             git push
           fi

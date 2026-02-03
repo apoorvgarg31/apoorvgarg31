@@ -53,25 +53,30 @@
 
 ---
 
-```bash
-
----
-
+<!-- PET_STATUS_START -->
 ### 🐣 My Pet Status
+
+<div align="center">
 
 **👑 Pip the Blob** | ECSTATIC 🤩
 
 | Hunger | Happiness | Energy | Today's Commits |
 |:------:|:---------:|:------:|:---------------:|
-| 100% | 100% | 100% | 127 |
+| 100% | 100% | 100% | 128 |
 
-> *Stage: **Elder** (770 total contributions) • This pet feeds on my git commits!*
+*Stage: **Elder** (770 total contributions) • This pet feeds on my git commits!*
 
 [![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Get_Yours-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
 
 ```bash
 pip install git+https://github.com/apoorvgarg31/terminal-pet.git
 ```
+
+</div>
+<!-- PET_STATUS_END -->
+
+---
+
 ### 📊 GitHub Stats
 
 <p align="center">
@@ -98,6 +103,7 @@ class Apy:
     
     def philosophy(self):
         return "Ship fast, learn faster, make it fun 🚀"
+```
 
 ---
 
