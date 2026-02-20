@@ -57,11 +57,11 @@
 
 <div align="center">
 
-**👑 Pip the Blob** | OKAY 😐
+**👑 Pip the Blob** | SLEEPY 😴
 
 | Hunger | Happiness | Energy | Today's Commits |
 |:------:|:---------:|:------:|:---------------:|
-| 45% | 56% | 68% | 9 |
+| 0% | 20% | 50% | 0 |
 
 *Stage: **Elder** (1524 total contributions) • This pet feeds on my git commits!*
 
