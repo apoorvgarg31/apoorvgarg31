@@ -61,9 +61,9 @@
 
 | Hunger | Happiness | Energy | Today's Commits |
 |:------:|:---------:|:------:|:---------------:|
-| 75% | 80% | 80% | 15 |
+| 80% | 84% | 82% | 16 |
 
-*Stage: **Elder** (2821 total contributions) • This pet feeds on my git commits!*
+*Stage: **Elder** (2822 total contributions) • This pet feeds on my git commits!*
 
 [![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Get_Yours-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
 
