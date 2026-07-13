@@ -57,13 +57,13 @@
 
 <div align="center">
 
-**👑 Pip the Blob** | OKAY 😐
+**👑 Pip the Blob** | CONTENT 🙂
 
 | Hunger | Happiness | Energy | Today's Commits |
 |:------:|:---------:|:------:|:---------------:|
-| 30% | 44% | 62% | 6 |
+| 70% | 76% | 78% | 14 |
 
-*Stage: **Elder** (4424 total contributions) • This pet feeds on my git commits!*
+*Stage: **Elder** (4432 total contributions) • This pet feeds on my git commits!*
 
 [![terminal-pet](https://img.shields.io/badge/🐣_terminal--pet-Get_Yours-brightgreen?style=for-the-badge)](https://github.com/apoorvgarg31/terminal-pet)
 
